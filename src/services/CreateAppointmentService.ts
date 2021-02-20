@@ -8,6 +8,8 @@ import ProviderRepository from '../repositories/ProviderRepository';
 import ClientRepository from '../repositories/ClientRepository';
 import Client from '../models/Client';
 
+import AppError from '../errors/AppError';
+
 interface Request {
     date: Date;
     provider_id: string;
@@ -39,7 +41,7 @@ class CreateAppointmentService {
     const checkClient = await clientRepository.findById(client_id);
 
     if (findAppointmentInSameDate) {
-        throw Error('This appointment is already booked')
+        throw new AppError('This appointment is already booked')
     }
     if (checkProvider && checkClient) {
 
@@ -63,7 +65,7 @@ class CreateAppointmentService {
     return appointment;
 
   } else {
-    throw Error('This provider or client not is registred')
+    throw new AppError('This provider or client not is registred')
    }
   }
 }

@@ -16,7 +16,6 @@ serviceRouter.get('/', async (request, response) => {
 
 
 serviceRouter.post('/', async (request, response) => {
-    try {
       const {
         name,
         description,
@@ -34,9 +33,6 @@ serviceRouter.post('/', async (request, response) => {
         date: parsedDate,
       })
       return response.json(user);
-    } catch (err) {
-        return response.status(400).json({ error: err.message });
-    }
 });
 
 

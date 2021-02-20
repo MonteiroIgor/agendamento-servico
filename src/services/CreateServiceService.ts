@@ -4,6 +4,8 @@ import { getCustomRepository } from 'typeorm';
 import Services from "../models/Services";
 import ServiceRepository from '../repositories/ServiceRepository';
 
+import AppError from '../errors/AppError';
+
 
 
 interface Request {
@@ -23,7 +25,7 @@ class CreateServicesService {
     const serviceDate = startOfHour(date);
 
     if(checkServiceExists){
-      throw new Error('Already registered service.');
+      throw new AppError('Already registered service.');
     }
 
     const service = serviceRepository.create({

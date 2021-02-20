@@ -5,6 +5,8 @@ import UserRepository from '../repositories/UserRepository';
 import ProviderRepository from '../repositories/ProviderRepository';
 import { hash } from 'bcryptjs'
 
+import AppError from '../errors/AppError';
+
 
 
 interface Request {
@@ -25,10 +27,10 @@ class CreateUserService {
 
     console.log(checkProviderExists)
     if(checkUsersExists){
-      throw new Error('Already registered user.');
+      throw new AppError('Already registered user.');
     }
     if (checkProviderExists === null) {
-      throw new Error('Provider not Exist.')
+      throw new AppError('Provider not Exist.')
     }
 
     const hashPassword = await hash(password, 6);

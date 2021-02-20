@@ -3,6 +3,8 @@ import { getCustomRepository, getRepository } from 'typeorm';
 import Client from '../models/Client';
 import ClientRepository from '../repositories/ClientRepository';
 
+import AppError from '../errors/AppError';
+
 interface Request {
     name: string;
     cpf: string;
@@ -19,7 +21,7 @@ class CreateClientService {
     const clientCheck = await clientRepository.findByCpf(cpf);
 
     if (clientCheck) {
-        throw Error('This Client is already existis')
+        throw new AppError('This Client is already existis')
     }
 
     const client = clientRepository.create({

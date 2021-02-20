@@ -3,6 +3,8 @@ import { getCustomRepository, getRepository } from 'typeorm';
 import Provider from '../models/Provider';
 import ProviderRepository from '../repositories/ProviderRepository';
 
+import AppError from '../errors/AppError';
+
 interface Request {
     name: string;
     cpf: string;
@@ -18,7 +20,7 @@ class CreateProviderService {
     const providerCheck = await providerRepository.findByCpf(cpf);
 
     if (providerCheck) {
-        throw Error('This provider is already existis')
+        throw new AppError('This provider is already existis')
     }
 
     const provider = providerRepository.create({

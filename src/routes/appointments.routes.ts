@@ -5,7 +5,11 @@ import { parseISO } from 'date-fns'
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const appointmentsRouter = Router();
+
+appointmentsRouter.use(ensureAuthenticated);
 
 
 appointmentsRouter.get('/', async (request, response) => {
@@ -16,7 +20,6 @@ appointmentsRouter.get('/', async (request, response) => {
 })
 
 appointmentsRouter.post('/', async (request, response) => {
-    try {
         const { date, client_id, client_name, provider_id, service_id, service_name, advancePayment, price, advance_payment, remainder_payment, status } = request.body;
 
         const parsedDate = parseISO(date);
@@ -28,9 +31,6 @@ appointmentsRouter.post('/', async (request, response) => {
         });
 
         return response.json(appointment);
-    } catch (err) {
-        return response.status(400).json({ error: err.message });
-    }
 });
 
 
