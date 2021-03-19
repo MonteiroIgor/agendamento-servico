@@ -8,5 +8,7 @@ export default interface IClientsRepository {
 
   findById(id: string): Promise<Client | undefined>;
 
-  inserCredit(credit: number, id: string): Promise<void | undefined>;
+  insertCredit(credit: number, id: string): Promise<void | undefined>;
+
+  findAllClients(): Promise<Client[] | undefined>;
 }

@@ -5,4 +5,6 @@ export default interface IServicesRepository {
   create(data: ICreateServiceDTO): Promise<Services>;
 
   findByName(name: string): Promise<Services | undefined>;
+
+  findAllServices(): Promise<Services[] | undefined>;
 }

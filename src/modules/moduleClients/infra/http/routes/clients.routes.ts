@@ -1,41 +1,13 @@
 import { Router } from 'express';
 
-import CreateClientService from '../../../services/CreateClientService';
-import { container } from 'tsyringe';
+import ClientsController from '../controllers/ClientsController';
 
 
 const clientsRouter = Router();
+const clientsController = new ClientsController();
 
-// clientsRouter.get('/', async (request, response) => {
-//   const clientRepository = getCustomRepository(ClientRepository);
-//   const client = await clientRepository.find();
-
-//   return response.json(client);
-// })
-
-clientsRouter.post('/', async (request, response) => {
-    const {
-      name,
-      cpf,
-      email,
-      phone,
-      dtBirth,
-      credit } = request.body;
-
-    const createClient = container.resolve(CreateClientService);
-
-    const client = await createClient.execute({
-      name,
-      cpf,
-      email,
-      phone,
-      dtBirth,
-      credit,
-    })
-
-    return response.json(client);
-
-});
+clientsRouter.get('/', clientsController.index)
+clientsRouter.post('/', clientsController.create)
 
 
 export default clientsRouter;

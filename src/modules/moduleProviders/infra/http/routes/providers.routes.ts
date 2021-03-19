@@ -1,41 +1,23 @@
 import { Router } from 'express';
 
+import ensureAuthenticated from '../../../../moduleUsers/infra/http/middlewares/ensureAuthenticated';
 import CreateProviderService from '../../../services/CreateProviderService';
 import { container } from 'tsyringe';
-
+import ProvidersController from '../controllers/ProvidersController';
+import ProvidersDayAvailabilityController from '../../../../moduleAppointments/infra/http/controllers/ProvidersDayAvailabilityController';
+import ProvidersMonthAvailabilityController from '../../../../moduleAppointments/infra/http/controllers/ProvidersMonthAvailabilityController';
 
 const providerRouter = Router();
+const providersController = new ProvidersController();
+const providersDayAvailabilityController = new ProvidersDayAvailabilityController();
+const providersMonthAvailabilityController = new ProvidersMonthAvailabilityController();
 
+providerRouter.use(ensureAuthenticated);
 
-// providerRouter.get('/', async (request, response) => {
-//   const providerRepository = getCustomRepository(ProviderRepository);
-//   const provider = await providerRepository.find();
-
-//   return response.json(provider);
-// })
-
-
-providerRouter.post('/', async (request, response) => {
-      const {
-        name,
-        cpf,
-        email,
-        phone,
-        dtBirth } = request.body;
-
-
-      const createProvider = container.resolve(CreateProviderService);
-
-      const provider = await createProvider.execute({
-        name,
-        cpf,
-        email,
-        phone,
-        dtBirth
-      })
-
-      return response.json(provider);
-});
+providerRouter.get('/', providersController.index);
+providerRouter.post('/', providersController.create);
+providerRouter.get('/:provider_id/day-availability', providersDayAvailabilityController.index);
+providerRouter.get('/:provider_/month-availability', providersMonthAvailabilityController.index);
 
 
 export default providerRouter;

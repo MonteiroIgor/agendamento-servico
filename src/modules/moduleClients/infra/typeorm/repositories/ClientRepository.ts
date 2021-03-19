@@ -1,5 +1,4 @@
-import ICreateClientDTO from '@modules/moduleClients/dtos/ICreateClientDTO';
-import { add } from 'date-fns';
+import ICreateClientDTO from '../../../../../modules/moduleClients/dtos/ICreateClientDTO';
 import { getRepository, Repository, getConnection } from 'typeorm';
 
 import IClientsRepository from '../../../repositories/IClientsRepository';
@@ -12,6 +11,14 @@ class ClientRepository implements IClientsRepository{
 
     constructor() {
       this.ormRepository = getRepository(Client);
+    }
+
+    public async findAllClients(): Promise<Client[] | undefined> {
+      let clients: Client[];
+
+      clients = await this.ormRepository.find();
+
+      return clients;
     }
 
     public async findByCpf(cpf: string): Promise<Client | undefined> {
@@ -30,7 +37,7 @@ class ClientRepository implements IClientsRepository{
       return findClient;
   }
 
-  public async inserCredit(credit: number, id: string): Promise<void | undefined>{
+  public async insertCredit(credit: number, id: string): Promise<void | undefined>{
 
     await getConnection()
     .createQueryBuilder()

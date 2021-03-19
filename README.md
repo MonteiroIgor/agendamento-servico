@@ -7,7 +7,7 @@
 
 - Usuário deve poder cadastrar e precificar serviço;
 - Usuário deve poder excluir serviço;
-- Usuário deve poder editar dados do servço;
+- Usuário deve poder editar dados do serviço;
 
 **RNF**
 
@@ -19,9 +19,9 @@
 
 **RF**
 
-- Usuário deve poder cadastrar prestadores de serviço;
-- Usuário deve poder excluir cadastro de prestadores de serviço;
-- Usuário deve poder atualizar dados dos prestadores de serviço;
+- Usuário deve poder cadastrar prestadores de serviço; OK
+- Usuário deve poder excluir cadastro de prestadores de serviço; OK
+- Usuário deve poder atualizar dados dos prestadores de serviço; OK
 
 **RNF**
 
@@ -36,9 +36,9 @@
 
 **RF**
 
-- Usuário deve poder recuperar sua senha informando o seu e-mail;
-- Usuário deve receber seu e-mail com instruções de recuperçãoç de senha;
-- Usuário deve poder resetar sua senha;
+- Usuário deve poder recuperar sua senha informando o seu e-mail; OK
+- Usuário deve receber seu e-mail com instruções de recuperçãoç de senha; OK
+- Usuário deve poder resetar sua senha; OK
 
 **RNF**
 
@@ -68,8 +68,8 @@
 
 **RF**
 
-- Usuário deve poder listar todos agendamentos de um dia;
-- Usuário deve poder listar todos agendamentos de um mês;
+- Usuário deve poder listar todos agendamentos de um dia; OK
+- Usuário deve poder listar todos agendamentos de um mês; OK
 - Usuário deve poder listar todos agendamentos de um período que ele escolher;
 - Deve ser exibida uma notificação sempre que houver um novo agendamento;
 - Usuário deve poder vizualizar todas as notificações não lidas;
@@ -88,9 +88,9 @@
 
 **RF**
 
-- Usuário deve poder listar todos prestadores de serviço cadastrados;
-- Usuário deve poder listar os dias de um mês com pelo menos um horário disponível de um prestador;
-- Usuário deve poder listar horários disponíveis em um dia específico de um prestador;
+- Usuário deve poder listar todos prestadores de serviço cadastrados; OK
+- Usuário deve poder listar os dias de um mês com pelo menos um horário disponível de um prestador; OK
+- Usuário deve poder listar horários disponíveis em um dia específico de um prestador; OK
 - Usuário deve poder realizar
 
 **RNF**
@@ -100,13 +100,13 @@
 
 **RN**
 
-- Cada agendamento deve durar 1h exatamente;
-- Os agendamentos devem estar disponíveis entre 8h ás 18h (Primeiro ás 8h, último ás 17h);
-- Cliente não pode agendar em um horário já oculpado;
-- Cliente não pode agendar em um horário que já passou;
-- Cliente não pode agendar serviçõs consigo mesmo;
+- Cada agendamento deve durar 1h exatamente; OK
+- Os agendamentos devem estar disponíveis entre 8h ás 18h (Primeiro ás 8h, último ás 17h); OK
+- Cliente não pode agendar em um horário já oculpado; OK
+- Cliente não pode agendar em um horário que já passou; Ok
+- Cliente não pode agendar serviçõs consigo mesmo; Ok
 - Cliente deve cancelar agendamento com no mínimo 30 minutos de antecedência;
-- Cliente só poderá agendar serviço com no mínimo 1h de antecedência para o horário desejado;
+- Cliente só poderá agendar serviço com no mínimo 1h de antecedência para o horário desejado; OK
 
 
 
