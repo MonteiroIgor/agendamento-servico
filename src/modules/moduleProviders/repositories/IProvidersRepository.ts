@@ -10,4 +10,7 @@ export default interface IProvidersRepository {
   findByCpf(cpf: string): Promise<Provider | undefined>;
 
   findById(id: string): Promise<Provider | undefined>;
+
+  findByEmail(email: string): Promise<Provider | undefined>;
+
 }

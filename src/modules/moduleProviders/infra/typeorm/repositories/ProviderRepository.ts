@@ -22,6 +22,14 @@ class ProviderRepository implements IProvidersRepository{
         return findProvider;
     }
 
+    public async findByEmail(email: string): Promise<Provider | undefined> {
+      const findProvider = await this.ormRepository.findOne({
+        where: { email },
+      });
+
+      return findProvider;
+  }
+
     public async findAllProviders({ except_provider_id }: IFindAllProvidersDTO): Promise<Provider[] | undefined> {
       let providers: Provider[];
 

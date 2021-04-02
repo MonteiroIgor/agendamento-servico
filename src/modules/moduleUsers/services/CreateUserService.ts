@@ -11,7 +11,7 @@ import ProviderRepository from "../../moduleProviders/infra/typeorm/repositories
 
 
 interface IRequest {
-  provider_id: string;
+  provider_id?: string;
   email: string;
   password: string;
   user_name: string;
@@ -30,23 +30,21 @@ class CreateUserService {
     private hashProvider: IHashProvider,
     ){}
 
-  public async execute({ provider_id, email, password, user_name}: IRequest): Promise<User> {
+  public async execute({ email, password, user_name}: IRequest): Promise<User> {
 
-    const checkUsersExists = await this.usersRepository.findByProviderId(provider_id);
-    const checkProviderExists = await this.providersRepository.findById(provider_id);
+    const checkUsersExists = await this.usersRepository.findByUserName(user_name);
+    const checkProviderExists = await this.providersRepository.findByEmail(email);
 
-    console.log(checkProviderExists)
-    if(checkUsersExists){
+
+    if(checkProviderExists?.id || checkUsersExists){
       throw new AppError('Already registered user.');
     }
-    if (checkProviderExists === null) {
-      throw new AppError('Provider not Exist.')
-    }
+
 
     const hashPassword = await this.hashProvider.generateHash(password);
 
     const user = await this.usersRepository.create({
-      provider_id,
+      provider_id: checkProviderExists?.id,
       email,
       password: hashPassword,
       user_name,
