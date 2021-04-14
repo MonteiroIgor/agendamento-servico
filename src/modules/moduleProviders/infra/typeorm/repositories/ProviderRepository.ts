@@ -4,7 +4,7 @@ import IProvidersRepository from '../../../repositories/IProvidersRepository';
 import ICreateProviderDTO from '../../../dtos/ICreateProviderDTO';
 
 import Provider from '../entities/Provider';
-import IFindAllProvidersDTO from '@modules/moduleProviders/dtos/IFindAllProvidersDTO';
+import IFindAllProvidersDTO from '../../../../../modules/moduleProviders/dtos/IFindAllProvidersDTO';
 
 
 class ProviderRepository implements IProvidersRepository{

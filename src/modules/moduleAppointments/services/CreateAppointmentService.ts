@@ -1,4 +1,4 @@
-import { startOfHour, isBefore, getHours } from 'date-fns'
+import { startOfHour, isBefore, getHours, format } from 'date-fns'
 
 import Appointment from '../infra/typeorm/entities/Appointment';
 import AppError from '../../../shared/errors/AppError';
@@ -9,6 +9,8 @@ import { inject, injectable } from 'tsyringe'
 import AppointmentsRepository from '../infra/typeorm/repositories/AppointmentsRepository';
 import ProviderRepository from '../../../modules/moduleProviders/infra/typeorm/repositories/ProviderRepository';
 import ClientRepository from '../../moduleClients/infra/typeorm/repositories/ClientRepository';
+import NotificationsRepository from '../../moduleNotifications/infra/typeorm/repositories/NotificationsRepository';
+import INotificationsRepository from '../../moduleNotifications/repositories/INotificationsRepository';
 
 
 interface IRequest {
@@ -34,6 +36,9 @@ class CreateAppointmentService {
       private providerRepository: IProvidersRepository,
       @inject(ClientRepository)
       private clientRepository: IClientsRepository,
+
+      @inject(NotificationsRepository)
+      private notificationsRepository: INotificationsRepository,
       ) {}
 
 
@@ -83,6 +88,13 @@ class CreateAppointmentService {
     });
 
     await this.clientRepository.insertCredit(advance_payment, client_id)
+
+    const dateFormatted = format(appointmentDate, "dd/MM/yyyy 'ás' HH:mm'h'");
+
+    await this.notificationsRepository.create({
+      recipient_id: provider_id,
+      content: `Novo agendamento para ${dateFormatted}`
+    })
 
     return appointment;
 

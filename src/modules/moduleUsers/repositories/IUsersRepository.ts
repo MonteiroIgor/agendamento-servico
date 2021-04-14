@@ -8,4 +8,5 @@ export default interface IUsersRepository {
   create(data: ICreateUserDTO): Promise<User>;
   save(user: User): Promise<User>;
   findByProviderId(provider_id: string): Promise<User | undefined>;
+  findAllUsers(): Promise<User[] | undefined>;
 }

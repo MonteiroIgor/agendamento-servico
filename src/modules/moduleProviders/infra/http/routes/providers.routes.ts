@@ -17,7 +17,7 @@ providerRouter.use(ensureAuthenticated);
 providerRouter.get('/', providersController.index);
 providerRouter.post('/', providersController.create);
 providerRouter.get('/:provider_id/day-availability', providersDayAvailabilityController.index);
-providerRouter.get('/:provider_/month-availability', providersMonthAvailabilityController.index);
+providerRouter.get('/:provider_id/month-availability', providersMonthAvailabilityController.index);
 
 
 export default providerRouter;

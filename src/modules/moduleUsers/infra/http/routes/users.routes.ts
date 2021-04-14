@@ -21,12 +21,7 @@ interface User {
   user_name: string
 }
 
-// usersRouter.get('/', async (request, response) => {
-//   const userRepository = getCustomRepository(UserRepository);
-//   const user = await userRepository.find();
-
-//   return response.json(user);
-// })
+usersRouter.get('/', usersController.index)
 
 
 

@@ -5,9 +5,6 @@ import { container } from 'tsyringe';
 import AuthenticateUserService from '../../../services/AuthenticateUserService';
 
 
-import CreateUserService from '../../../services/CreateUserService';
-
-
 export default class SessionsController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { user_name, password } = request.body;

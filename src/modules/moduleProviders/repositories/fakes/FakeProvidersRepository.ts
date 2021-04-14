@@ -4,7 +4,7 @@ import IProvidersRepository from '../../../moduleProviders/repositories/IProvide
 import ICreateProviderDTO from '../../../moduleProviders/dtos/ICreateProviderDTO';
 
 import Provider from '../../../moduleProviders/infra/typeorm/entities/Provider';
-import IFindAllProvidersDTO from '@modules/moduleProviders/dtos/IFindAllProvidersDTO';
+import IFindAllProvidersDTO from '../../../../modules/moduleProviders/dtos/IFindAllProvidersDTO';
 
 class ProviderRepository implements IProvidersRepository{
     private providers: Provider[] = [];
@@ -14,6 +14,13 @@ class ProviderRepository implements IProvidersRepository{
 
         return findProvider;
     }
+
+    public async findByEmail(email: string): Promise<Provider | undefined> {
+      const findProvider = this.providers.find(provider => provider.email === email);
+
+      return findProvider;
+  }
+
 
     public async findById(id: string): Promise<Provider | undefined> {
       const findProvider = this.providers.find(provider => provider.id === id);
