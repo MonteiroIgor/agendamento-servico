@@ -1,4 +1,7 @@
 import { Router } from 'express';
+import { celebrate, Joi, Segments } from 'celebrate';
+
+
 import multer from 'multer';
 import uploadConfig from '../../../../../config/upload';
 import UpdateUserAvatarService from '../../../services/UpdateUserAvatarService';
@@ -25,7 +28,13 @@ usersRouter.get('/', usersController.index)
 
 
 
-usersRouter.post('/', usersController.create);
+usersRouter.post('/', celebrate({
+  [Segments.BODY]: {
+    email: Joi.string().email().required(),
+    user_name: Joi.string().required(),
+    password: Joi.string().required(),
+  }
+}),usersController.create);
 
 
 usersRouter.patch('/avatar',

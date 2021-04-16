@@ -3,3 +3,6 @@ temp/*
 !tmp/.gitkeep
 .idea/
 .vscode/
+.env
+
+ormconfig.json
