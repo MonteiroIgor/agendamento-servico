@@ -2,15 +2,19 @@ import { startOfHour, isBefore, getHours, format } from 'date-fns'
 
 import Appointment from '../infra/typeorm/entities/Appointment';
 import AppError from '../../../shared/errors/AppError';
+
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 import IProvidersRepository from '../../moduleProviders/repositories/IProvidersRepository';
 import IClientsRepository from '../../moduleClients/repositories/IClientsRepository';
 import { inject, injectable } from 'tsyringe'
+
 import AppointmentsRepository from '../infra/typeorm/repositories/AppointmentsRepository';
 import ProviderRepository from '../../../modules/moduleProviders/infra/typeorm/repositories/ProviderRepository';
 import ClientRepository from '../../moduleClients/infra/typeorm/repositories/ClientRepository';
 import NotificationsRepository from '../../moduleNotifications/infra/typeorm/repositories/NotificationsRepository';
 import INotificationsRepository from '../../moduleNotifications/repositories/INotificationsRepository';
+import ICacheProvider from '../../../shared/container/providers/CacheProvider/models/ICacheProvider';
+
 
 
 interface IRequest {
@@ -32,13 +36,18 @@ class CreateAppointmentService {
     constructor(
       @inject(AppointmentsRepository)
       private appointmentsRepository: IAppointmentsRepository,
+
       @inject(ProviderRepository)
       private providerRepository: IProvidersRepository,
+
       @inject(ClientRepository)
       private clientRepository: IClientsRepository,
 
       @inject(NotificationsRepository)
       private notificationsRepository: INotificationsRepository,
+
+      @inject('CacheProvider')
+      private cacheProvider: ICacheProvider,
       ) {}
 
 
@@ -96,6 +105,8 @@ class CreateAppointmentService {
       content: `Novo agendamento para ${dateFormatted}`
     })
 
+    await this.cacheProvider.invalidate(`provider-appointments:${provider_id}:${format(appointmentDate, 'yyyy-M-d')}`);
+
     return appointment;
 
   } else {
@@ -105,3 +116,5 @@ class CreateAppointmentService {
 }
 
 export default CreateAppointmentService;
+
+

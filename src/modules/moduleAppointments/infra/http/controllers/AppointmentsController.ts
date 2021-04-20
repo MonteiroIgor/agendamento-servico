@@ -23,12 +23,10 @@ export default class AppointmentsController {
 public async create(request: Request, response: Response): Promise<Response> {
   const { date, client_id, client_name, provider_id, service_id, service_name, advancePayment, price, advance_payment, remainder_payment, status } = request.body;
 
-  const parsedDate = parseISO(date);
-
   const createAppointment = container.resolve(CreateAppointmentService);
 
   const appointment = await createAppointment.execute({
-    date: parsedDate, client_id, client_name, provider_id, service_id, service_name, price, advancePayment, advance_payment, remainder_payment, status
+    date: date, client_id, client_name, provider_id, service_id, service_name, price, advancePayment, advance_payment, remainder_payment, status
   });
 
   return response.json(appointment);

@@ -4,6 +4,8 @@ import ProviderRepository from '../infra/typeorm/repositories/ProviderRepository
 import AppError from '../../../shared/errors/AppError';
 import IProvidersRepository from '../repositories/IProvidersRepository';
 import { inject, injectable } from 'tsyringe';
+import ICacheProvider from "../../../shared/container/providers/CacheProvider/models/ICacheProvider";
+
 
 interface IRequest {
     name: string;
@@ -17,7 +19,12 @@ interface IRequest {
 class CreateProviderService {
     constructor(
       @inject(ProviderRepository)
-      private providerRepository: IProvidersRepository) {}
+      private providerRepository: IProvidersRepository,
+
+      @inject('CacheProvider')
+      private cacheProvider: ICacheProvider,
+
+      ) {}
 
     public async execute({name, cpf, email, phone, dtBirth}: IRequest): Promise<Provider> {
 
@@ -34,6 +41,8 @@ class CreateProviderService {
       phone,
       dtBirth
     });
+
+    await this.cacheProvider.invalidatePrefix(`providers-list`)
 
     return provider;
     }

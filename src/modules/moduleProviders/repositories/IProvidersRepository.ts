@@ -3,7 +3,7 @@ import ICreateProviderDTO from  '../dtos/ICreateProviderDTO';
 import IFindAllProvidersDTO from '../dtos/IFindAllProvidersDTO';
 
 export default interface IProvidersRepository {
-  findAllProviders(date: IFindAllProvidersDTO): Promise<Provider[] | undefined>;
+  findAllProviders(date: IFindAllProvidersDTO): Promise<Provider[]>;
 
   create(data: ICreateProviderDTO): Promise<Provider>;
 

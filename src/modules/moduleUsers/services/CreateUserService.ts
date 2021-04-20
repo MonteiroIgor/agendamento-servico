@@ -7,6 +7,7 @@ import IProvidersRepository from '../../moduleProviders/repositories/IProvidersR
 import { inject, injectable } from "tsyringe";
 import UserRepository from "../infra/typeorm/repositories/UserRepository";
 import ProviderRepository from "../../moduleProviders/infra/typeorm/repositories/ProviderRepository";
+import ICacheProvider from "../../../shared/container/providers/CacheProvider/models/ICacheProvider";
 
 
 
@@ -23,11 +24,13 @@ class CreateUserService {
   constructor(
     @inject(UserRepository)
     private usersRepository: IUsersRepository,
+
     @inject(ProviderRepository)
     private providersRepository: IProvidersRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
     ){}
 
   public async execute({ email, password, user_name}: IRequest): Promise<User> {
