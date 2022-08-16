@@ -7,14 +7,21 @@ import IClientsRepository from '../../modules/moduleClients/repositories/IClient
 import ClientRepository from '../../modules/moduleClients/infra/typeorm/repositories/ClientRepository';
 
 import IProvidersRepository from '../../modules/moduleProviders/repositories/IProvidersRepository';
-import ProvidersRepository from '../../modules/moduleProviders/infra/typeorm/repositories/ProviderRepository';
+import ProviderRepository from '../../modules/moduleProviders/infra/typeorm/repositories/ProviderRepository';
 
 import IServicesRepository from '../../modules/moduleServices/repositories/IServicesRepository';
 import ServicesRepository from '../../modules/moduleServices/infra/typeorm/repositories/ServiceRepository';
 
 import IUsersRepository from '../../modules/moduleUsers/repositories/IUsersRepository';
-import UsersRepository from '../../modules/moduleUsers/infra/typeorm/repositories/UserRepository';
+import UserRepository from '../../modules/moduleUsers/infra/typeorm/repositories/UserRepository';
 
+
+
+
+container.registerSingleton<IUsersRepository>(
+  'UserRepository',
+  UserRepository,
+)
 
 container.registerSingleton<IAppointmentsRepository>(
   'AppointmentsRepository',
@@ -27,8 +34,8 @@ container.registerSingleton<IClientsRepository>(
 )
 
 container.registerSingleton<IProvidersRepository>(
-  'ProvidersRepository',
-  ProvidersRepository,
+  'ProviderRepository',
+  ProviderRepository,
 )
 
 container.registerSingleton<IServicesRepository>(
@@ -36,7 +43,14 @@ container.registerSingleton<IServicesRepository>(
   ServicesRepository,
 )
 
-container.registerSingleton<IUsersRepository>(
-  'UsersRepository',
-  UsersRepository,
-)
+
+// container.registerSingleton<IUserTokensRepository>(
+//   'UserTokensRepository',
+//   UserTokensRepository,
+// )
+
+// container.registerSingleton<INotificationsRepository>(
+//   'NotificationsRepository',
+//   NotificationsRepository,
+
+// )
