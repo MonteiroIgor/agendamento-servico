@@ -14,6 +14,12 @@ class ServiceRepository implements IServicesRepository{
       this.ormRepository = getRepository(Services);
     }
 
+    public async findServices(): Promise<Services[]> {
+      const findServices = await this.ormRepository.find()
+
+      return findServices;
+    }
+
 
     public async findByName(name: string): Promise<Services | undefined> {
         const findService = await this.ormRepository.findOne({

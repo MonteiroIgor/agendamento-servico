@@ -13,6 +13,12 @@ class ProviderRepository implements IProvidersRepository{
       this.ormRepository = getRepository(Provider);
     }
 
+    public async findAllProvider(): Promise<Provider[]> {
+      const findProvider = await this.ormRepository.find()
+
+      return findProvider;
+  }
+
     public async findByCpf(cpf: string): Promise<Provider | undefined> {
         const findProvider = await this.ormRepository.findOne({
           where: { cpf },

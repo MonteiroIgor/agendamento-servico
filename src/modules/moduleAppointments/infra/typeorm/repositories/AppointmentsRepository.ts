@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { EntityRepository, getRepository, Repository } from 'typeorm';
 
 import IAppointmentsRepository from '../../../repositories/IAppointmentsRepository';
 import ICreateAppointmentDTO from '../../../dtos/ICreateAppointmentDTO';
@@ -6,11 +6,18 @@ import ICreateAppointmentDTO from '../../../dtos/ICreateAppointmentDTO';
 
 import Appointment from '../entities/Appointment';
 
+
 class AppointmentsRepository implements IAppointmentsRepository{
     private ormRepository: Repository<Appointment>;
 
     constructor() {
       this.ormRepository = getRepository(Appointment);
+    }
+
+    public async findAllAppointment(): Promise<Appointment[]> {
+        const findAppointment = await this.ormRepository.find()
+
+        return findAppointment;
     }
 
     public async findByDate(date: Date): Promise<Appointment | undefined> {

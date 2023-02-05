@@ -4,15 +4,17 @@ import CreateService from '../../../services/CreateServiceService';
 import { parseISO } from 'date-fns';
 import { container } from 'tsyringe';
 
+import { getCustomRepository } from 'typeorm';
+
 
 const serviceRouter = Router();
 
-// serviceRouter.get('/', async (request, response) => {
-//   const serviceRepository = getCustomRepository(ServiceRepository);
-//   const user = await serviceRepository.find();
+serviceRouter.get('/', async (request, response) => {
+  const serviceRepository = getCustomRepository(ServiceRepository);
+  const user: Object[] = await serviceRepository.findServices();
 
-//   return response.json(user);
-// })
+  return response.json(user);
+})
 
 
 

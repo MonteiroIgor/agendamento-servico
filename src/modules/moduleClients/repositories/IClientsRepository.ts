@@ -2,6 +2,8 @@ import Client from '../infra/typeorm/entities/Client';
 import ICreateClientDTO from '../dtos/ICreateClientDTO';
 
 export default interface IClientsRepository {
+  findAll(): Promise<Client[]>;
+
   create(data: ICreateClientDTO): Promise<Client>;
 
   findByCpf(cpf: string): Promise<Client | undefined>;

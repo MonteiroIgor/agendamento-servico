@@ -1,17 +1,19 @@
 import { Router } from 'express';
-
+import ClientRepository from '../../typeorm/repositories/ClientRepository';
 import CreateClientService from '../../../services/CreateClientService';
 import { container } from 'tsyringe';
+
+import { getCustomRepository } from 'typeorm';
 
 
 const clientsRouter = Router();
 
-// clientsRouter.get('/', async (request, response) => {
-//   const clientRepository = getCustomRepository(ClientRepository);
-//   const client = await clientRepository.find();
+clientsRouter.get('/', async (request, response) => {
+  const clientRepository = getCustomRepository(ClientRepository);
+  const client = await clientRepository.findAll();
 
-//   return response.json(client);
-// })
+  return response.json(client);
+})
 
 clientsRouter.post('/', async (request, response) => {
     const {

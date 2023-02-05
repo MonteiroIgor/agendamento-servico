@@ -1,17 +1,23 @@
 import ICreateClientDTO from '@modules/moduleClients/dtos/ICreateClientDTO';
 import { add } from 'date-fns';
-import { getRepository, Repository, getConnection } from 'typeorm';
+import { getRepository, Repository, getConnection, EntityRepository } from 'typeorm';
 
 import IClientsRepository from '../../../repositories/IClientsRepository';
 
 import Client from '../entities/Client';
 
-
+@EntityRepository(Client)
 class ClientRepository implements IClientsRepository{
     private ormRepository: Repository<Client>;
 
     constructor() {
       this.ormRepository = getRepository(Client);
+    }
+
+    public async findAll(): Promise<Client[]> {
+      const clients = await this.ormRepository.find();
+
+      return clients;
     }
 
     public async findByCpf(cpf: string): Promise<Client | undefined> {
