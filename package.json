@@ -12,8 +12,8 @@
   "dependencies": {
     "aws-sdk": "^2.888.0",
     "bcryptjs": "^2.4.3",
-    "celebrate": "^14.0.0",
-    "class-transformer": "^0.4.0",
+    "celebrate": "^15.0.1",
+    "class-transformer": "^0.5.1",
     "cors": "2.8.4",
     "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
@@ -29,7 +29,7 @@
     "rate-limiter-flexible": "^2.2.1",
     "redis": "^3.1.1",
     "reflect-metadata": "^0.1.13",
-    "tsyringe": "^4.4.0",
+    "tsyringe": "^4.7.0",
     "typeorm": "^0.2.29",
     "uuidv4": "^6.2.6"
   },
@@ -46,6 +46,7 @@
     "@types/redis": "^2.8.28",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "eslint": "^7.16.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.1.0",

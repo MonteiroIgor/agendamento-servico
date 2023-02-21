@@ -13,7 +13,7 @@ const providersController = new ProvidersController();
 const providersDayAvailabilityController = new ProvidersDayAvailabilityController();
 const providersMonthAvailabilityController = new ProvidersMonthAvailabilityController();
 
-providerRouter.use(ensureAuthenticated);
+//providerRouter.use(ensureAuthenticated);
 
 providerRouter.get('/', providersController.index);
 providerRouter.post('/', celebrate({

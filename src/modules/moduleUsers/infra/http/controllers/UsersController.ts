@@ -1,7 +1,7 @@
 import ListAllUsersService from '../../../../moduleUsers/services/ListAllUsersService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 
 import CreateUserService from '../../../../../modules/moduleUsers/services/CreateUserService';
 
@@ -24,7 +24,7 @@ export default class UsersController {
       user_name,
     });
 
-    return response.json(classToClass(user))
+    return response.json(instanceToInstance(user))
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
@@ -33,6 +33,6 @@ export default class UsersController {
 
     const users = await listUsers.execute();
 
-    return response.json(classToClass(users))
+    return response.json(instanceToInstance(users))
   };
 }

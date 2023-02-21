@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, TableColumn, TableForeignKey} from "typeorm";
 
-export class AlterServiceFieldToServiceName1612048043757 implements MigrationInterface {
+export class AlterServiceFieldToServiceName1676898130529 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropColumn('appointments', 'service');

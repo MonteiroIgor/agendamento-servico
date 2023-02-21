@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateClient1612221872485 implements MigrationInterface {
+export class CreateProvider1676897589971 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
         new Table({
-            name: 'client',
+            name: 'provider',
             columns: [
                 {
                     name: 'id',
@@ -40,11 +40,6 @@ export class CreateClient1612221872485 implements MigrationInterface {
                     isNullable: false,
                 },
                 {
-                    name: 'credit',
-                    type: 'decimal',
-                    isNullable: true,
-                },
-                {
                     name: 'created_at',
                     type: 'timestamp',
                     default: 'now()',
@@ -63,5 +58,4 @@ export class CreateClient1612221872485 implements MigrationInterface {
 public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('provider')
 }
-
 }

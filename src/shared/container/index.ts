@@ -1,4 +1,4 @@
-import { container } from 'tsyringe';
+import { container, delay } from 'tsyringe';
 
 import '../../modules/moduleUsers/providers';
 import './providers';
@@ -23,6 +23,9 @@ import UserTokensRepository from '../../modules/moduleUsers/infra/typeorm/reposi
 
 import INotificationsRepository from '../../modules/moduleNotifications/repositories/INotificationsRepository';
 import NotificationsRepository from '../../modules/moduleNotifications/infra/typeorm/repositories/NotificationsRepository';
+
+import IHashProvider from '@modules/moduleUsers/providers/HashProvider/models/IHashProvider';
+
 
 container.registerSingleton<IAppointmentsRepository>(
   'AppointmentsRepository',

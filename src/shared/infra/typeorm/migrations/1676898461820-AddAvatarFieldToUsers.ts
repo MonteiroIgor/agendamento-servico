@@ -1,21 +1,18 @@
 import {MigrationInterface, QueryRunner, TableColumn} from "typeorm";
 
-export class AlterLengthPasswordUser1612746133444 implements MigrationInterface {
+export class AddAvatarFieldToUsers1676898461820 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropColumn('users', 'password');
     await queryRunner.addColumn('users', new TableColumn({
-      name: 'password',
+      name: 'avatar',
       type: 'varchar',
-      isNullable: false,
-      length: '12',
-    }),
-  );
+      isNullable: true,
+    }))
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropColumn('users', 'password');
-
+    await queryRunner.dropColumn('users', 'avatar' );
   }
+
 
 }
